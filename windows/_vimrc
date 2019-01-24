@@ -1,3 +1,5 @@
+"set runtimepath^=C:/Users/fgd/.vim/bundle/ctrlp.vim
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -11,7 +13,7 @@ call vundle#begin('$HOME/.vim/bundle/')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
+Plugin 'kien/ctrlp.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -89,6 +91,7 @@ set nu
 set guioptions-=m  "menu bar
 set guioptions-=T  "toolbar
 set guioptions-=r  "scrollbar
+set guioptions-=L
 set clipboard+=unnamed " Vim 的默认寄存器和系统剪贴板共享
 " Language
 set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
@@ -109,7 +112,8 @@ set smartindent
 set tabstop=4
 set expandtab
 set softtabstop=4
-set foldmethod=indent
+"set foldmethod=indent
+set nofoldenable
 "Color
 syntax enable
 "if  has('gui_running')
@@ -118,3 +122,42 @@ syntax enable
 "    set  background=dark
 "endif
 colorscheme monokai
+
+"Key map
+let mapleader=","
+"窗口切换
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+"nmap <leader>e :e $VIM/_vimrc<cr>
+
+noremap <C-a> ^
+noremap <C-e> $
+"打开当前目录 windows
+map <leader>ex :!start explorer %:p:h<CR>
+
+" 插入模式移动光标 alt + 方向键
+inoremap <M-j> <Down>
+inoremap <M-k> <Up>
+inoremap <M-h> <left>
+inoremap <M-l> <Right>
+
+" 打印当前时间
+map <F3> a<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
+
+nnoremap <M-n> :bn<CR>
+nnoremap <M-b> :bp<CR>
+nnoremap <M-w> :bd<CR>
+
+" 正常模式下 alt+j,k,h,l 调整分割窗口大小
+nnoremap <M-j> :resize +5<cr>
+nnoremap <M-k> :resize -5<cr>
+nnoremap <M-h> :vertical resize -5<cr>
+nnoremap <M-l> :vertical resize +5<cr>
+
+
+"Ctrl p config
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
+
