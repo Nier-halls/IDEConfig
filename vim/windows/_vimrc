@@ -31,6 +31,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
+Plugin 'udalov/kotlin-vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -107,13 +109,16 @@ set cursorline
 set hlsearch
 set lines=45 columns=140
 "Format
+set expandtab
 set autoindent
 set smartindent
 set tabstop=4
-set expandtab
 set softtabstop=4
+set shiftwidth=4
 "set foldmethod=indent
 set nofoldenable
+
+
 "Color
 syntax enable
 "if  has('gui_running')
@@ -130,7 +135,7 @@ nmap <C-j> <C-W>j
 nmap <C-k> <C-W>k
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
-"nmap <leader>e :e $VIM/_vimrc<cr>
+nmap <leader>rc :e $VIM/_vimrc<cr>
 
 noremap <C-a> ^
 noremap <C-e> $
@@ -143,9 +148,15 @@ inoremap <M-k> <Up>
 inoremap <M-h> <left>
 inoremap <M-l> <Right>
 
+inoremap <M-J> <Down>
+inoremap <M-K> <Up>
+inoremap <M-H> <left>
+inoremap <M-L> <Right>
+
 " 打印当前时间
 map <F3> a<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
 
+"buffer next previous close
 nnoremap <M-n> :bn<CR>
 nnoremap <M-b> :bp<CR>
 nnoremap <M-w> :bd<CR>
@@ -156,8 +167,17 @@ nnoremap <M-k> :resize -5<cr>
 nnoremap <M-h> :vertical resize -5<cr>
 nnoremap <M-l> :vertical resize +5<cr>
 
+nnoremap <M-left> :tabp<CR>
+nnoremap <M-right> :tabn<CR>
+nnoremap <M-q> :tabc<CR>
+
 
 "Ctrl p config
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 "set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_reuse_window = 'netrw'
 
+"Kotlin plugin config
+au BufNewFile,BufRead *.kt set filetype=kotlin
